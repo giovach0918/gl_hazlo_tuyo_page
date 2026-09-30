@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Página no encontrada | GL Hazlo Tuyo</title>
+  <meta name="description" content="La página que estás buscando no existe o ha sido movida. Regresa al inicio de GL Hazlo Tuyo para seguir explorando nuestros productos de bienestar y recuperacióón.">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            marca: {
+              primario: '#2E2FDC', /* Morado GL */
+              negro: '#000000',
+              gris: '#555555',
+              crema: '#F8F5F1',
+            }
+          },
+          fontFamily: {
+            corporativa: ['Montserrat', 'sans-serif'],
+            decorativa: ['Parisienne', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts de Marca (Montserrat y Parisienne) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Parisienne&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="bg-marca-crema text-marca-negro font-corporativa antialiased selection:bg-marca-primario selection:text-white flex flex-col min-h-screen">
+
+  <!-- Encabezado Principal -->
+  <header id="main-header" data-js="header-sticky" class="sticky top-0 z-50 bg-marca-crema/95 backdrop-blur-md border-b border-marca-gris/20 shadow-sm">
+    <nav aria-label="Navegación principal" class="container mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <button type="button" popovertarget="mobile-menúu-popover" data-js="mobile-menúu-trigger" aria-label="Abrir menúú de navegación" class="lg:hidden p-2 -ml-2 text-marca-gris hover:text-marca-negro focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md min-h-[48px] min-w-[48px] flex items-center justify-center">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <a href="index.html" aria-label="Ir al inicio" class="block focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md min-h-[48px] flex items-center">
+          <img src="https://placehold.co/180x50?text=GL+Hazlo+Tuyo" alt="GL Hazlo Tuyo Logo" width="180" height="50" class="h-8 w-auto">
+        </a>
+      </div>
+
+      <ul class="hidden lg:flex items-center gap-8">
+        <li><a href="index.html" class="text-sm font-bold text-marca-gris hover:text-marca-primario transition-colors py-2 px-3 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md min-h-[48px] flex items-center">Inicio</a></li>
+        <li><a href="./pages/categoria-masajeadores.html" class="text-sm font-bold text-marca-gris hover:text-marca-primario transition-colors py-2 px-3 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md min-h-[48px] flex items-center">Masajeadores</a></li>
+        <li><a href="./pages/categoria-termos.html" class="text-sm font-bold text-marca-gris hover:text-marca-primario transition-colors py-2 px-3 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md min-h-[48px] flex items-center">Termos</a></li>
+        <li><a href="./pages/categoria-bandas.html" class="text-sm font-bold text-marca-gris hover:text-marca-primario transition-colors py-2 px-3 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md min-h-[48px] flex items-center">Bandas</a></li>
+        <li><a href="./pages/categoria-accesorios.html" class="text-sm font-bold text-marca-gris hover:text-marca-primario transition-colors py-2 px-3 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md min-h-[48px] flex items-center">Accesorios</a></li>
+      </ul>
+
+      <button type="button" popovertarget="cart-popover" aria-controls="cart-popover" data-js="cart-trigger" aria-label="Ver carrito de compras" class="relative p-2 text-marca-gris hover:text-marca-negro focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md min-h-[48px] min-w-[48px] flex items-center justify-center transition-colors">
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span data-js="cart-badge-count" class="absolute top-1 right-1 bg-marca-primario text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center shadow-sm">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Menú Lateral Móvil (Popover Nativo) -->
+  <aside id="mobile-menúu-popover" popover="auto" aria-label="Menú de navegación móvil" class="fixed inset-y-0 left-0 w-72 bg-marca-crema shadow-2xl p-6 m-0 h-full max-h-none border-r border-marca-gris/20 transition-transform duration-300 ease-in-out backdrop:bg-marca-negro/60 backdrop:backdrop-blur-sm">
+    <button type="button" popovertarget="mobile-menúu-popover" popovertargetaction="hide" aria-label="Cerrar menúú" class="absolute top-4 right-4 p-2 text-marca-gris hover:text-marca-negro focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md min-h-[48px] min-w-[48px] flex items-center justify-center bg-marca-negro/5 hover:bg-marca-negro/10 transition-colors">
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <nav class="mt-12">
+      <ul class="flex flex-col gap-2">
+        <li><a href="index.html" class="block py-3 px-4 text-base font-bold text-marca-negro hover:bg-marca-primario/10 hover:text-marca-primario rounded-lg focus:outline-none focus:ring-2 focus:ring-marca-primario transition-colors min-h-[48px] flex items-center">Inicio</a></li>
+        <li><a href="./pages/categoria-masajeadores.html" class="block py-3 px-4 text-base font-bold text-marca-negro hover:bg-marca-primario/10 hover:text-marca-primario rounded-lg focus:outline-none focus:ring-2 focus:ring-marca-primario transition-colors min-h-[48px] flex items-center">Masajeadores</a></li>
+        <li><a href="./pages/categoria-termos.html" class="block py-3 px-4 text-base font-bold text-marca-negro hover:bg-marca-primario/10 hover:text-marca-primario rounded-lg focus:outline-none focus:ring-2 focus:ring-marca-primario transition-colors min-h-[48px] flex items-center">Termos</a></li>
+        <li><a href="./pages/categoria-bandas.html" class="block py-3 px-4 text-base font-bold text-marca-negro hover:bg-marca-primario/10 hover:text-marca-primario rounded-lg focus:outline-none focus:ring-2 focus:ring-marca-primario transition-colors min-h-[48px] flex items-center">Bandas</a></li>
+        <li><a href="./pages/categoria-accesorios.html" class="block py-3 px-4 text-base font-bold text-marca-negro hover:bg-marca-primario/10 hover:text-marca-primario rounded-lg focus:outline-none focus:ring-2 focus:ring-marca-primario transition-colors min-h-[48px] flex items-center">Accesorios</a></li>
+        <li class="my-4 border-t border-marca-gris/10" role="separator"></li>
+        <li><a href="#catalogo" class="block py-3 px-4 text-sm font-semibold text-marca-gris hover:bg-marca-negro/5 rounded-lg focus:outline-none focus:ring-2 focus:ring-marca-primario transition-colors min-h-[48px] flex items-center">Productos Destacados</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Carrito Desplegable (Popover Nativo) -->
+  <aside id="cart-popover" popover="auto" data-js="cart-container" aria-label="Carrito de compras" class="fixed inset-y-0 right-0 left-auto w-full sm:w-96 bg-marca-crema shadow-2xl p-0 m-0 h-screen max-h-screen border-l border-marca-gris/20 backdrop:bg-marca-negro/60 backdrop:backdrop-blur-sm z-[100]">
+    <div class="flex flex-col h-full">
+      <header class="p-4 sm:p-6 border-b border-marca-gris/20 flex items-center justify-between bg-marca-crema shrink-0">
+        <h2 class="text-xl font-black text-marca-negro">Tu Carrito</h2>
+        <button type="button" popovertarget="cart-popover" popovertargetaction="hide" aria-label="Cerrar carrito" class="p-2 text-marca-gris hover:text-marca-negro focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md min-h-[48px] min-w-[48px] flex items-center justify-center bg-white border border-marca-gris/20 shadow-sm transition-colors hover:bg-marca-negro/5">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </header>
+
+      <div class="flex-1 overflow-y-auto p-4 sm:p-6 bg-white">
+        <ul data-js="cart-items-list" aria-live="polite" class="flex flex-col gap-6">
+          <!-- Elemenútos del carrito inyectados dinámicamenúte -->
+        </ul>
+      </div>
+
+      <footer class="p-4 sm:p-6 border-t border-marca-gris/20 bg-marca-crema flex flex-col gap-4 shrink-0">
+        <div class="flex items-center justify-between text-lg font-bold text-marca-negro">
+          <span>Subtotal:</span>
+          <span data-js="cart-subtotal">$0.00</span>
+        </div>
+        <button type="button" data-js="checkout-button" class="w-full bg-marca-primario hover:opacity-90 text-white font-black py-4 px-4 rounded-xl shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-marca-primario transition-all transform active:scale-[0.98] min-h-[48px] flex items-center justify-center uppercase tracking-wide">
+          Pagar Seguro
+        </button>
+      </footer>
+    </div>
+  </aside>
+
+  <!-- Contenido Principal -->
+  <main id="main-content" class="flex-1 flex items-center justify-center py-16 lg:py-24">
+    <section class="container mx-auto px-4 text-center max-w-2xl">
+      <article class="bg-white p-8 sm:p-12 rounded-3xl border border-marca-gris/20 shadow-xl flex flex-col items-center gap-6">
+        
+        <!-- Icono / Badge 404 -->
+        <div class="w-20 h-20 rounded-full bg-marca-primario/10 border border-marca-primario/20 flex items-center justify-center text-marca-primario shadow-inner">
+          <svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+
+        <span class="text-xs sm:text-sm font-black tracking-widest text-marca-primario uppercase bg-marca-primario/10 px-3 py-1 rounded-full border border-marca-primario/20">
+          Error 404
+        </span>
+
+        <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black text-marca-primario tracking-tight leading-none drop-shadow-sm">
+          Página no encontrada
+        </h1>
+
+        <p class="text-base sm:text-lg text-marca-gris leading-relaxed max-w-lg mt-2">
+          ¡Ups! Lo sentimos mucho. La página que estás intentando buscar no existe, ha sido trasladada o el enlace no es el correcto.
+        </p>
+
+        <div class="pt-6 flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
+          <a href="index.html" class="inline-flex items-center justify-center gap-2 bg-marca-primario hover:opacity-90 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-marca-primario transition-all transform active:scale-[0.98] min-h-[48px] text-sm uppercase tracking-wide">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Volver al Inicio
+          </a>
+        </div>
+
+      </article>
+    </section>
+  </main>
+
+  <!-- Pie de Página -->
+    <footer id="main-footer" class="bg-marca-negro text-marca-gris pt-16 pb-8 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-marca-negro via-marca-primario to-marca-negro"></div>
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div class="flex flex-col gap-6">
+          <a href="index.html" aria-label="Ir al inicio" class="focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md block w-max min-h-[48px] flex items-center">
+            <img src="https://placehold.co/180x50?text=GL+Hazlo+Tuyo" alt="GL Hazlo Tuyo Logo" width="180" height="50" loading="lazy" class="h-8 w-auto invert opacity-90">
+          </a>
+          <p class="text-sm leading-relaxed text-marca-crema/70">Tu bienestar y rendimiento físico al siguiente nivel con tecnología y calidad garantizada.</p>
+        </div>
+
+        <nav aria-label="Categorías" class="flex flex-col gap-6">
+          <h3 class="text-marca-crema font-bold tracking-wider uppercase text-sm">Categorías</h3>
+          <ul class="flex flex-col gap-3">
+            <li class="group"><a href="pages/categoria-masajeadores.html" class="text-marca-crema/70 hover:text-marca-primario transition-all duration-300 transform group-hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md py-1 block min-h-[48px] sm:min-h-0 sm:py-0 flex items-center sm:block text-sm">Masajeadores de Percusión<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-block ml-1">→</span></a></li>
+            <li class="group"><a href="pages/categoria-termos.html" class="text-marca-crema/70 hover:text-marca-primario transition-all duration-300 transform group-hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md py-1 block min-h-[48px] sm:min-h-0 sm:py-0 flex items-center sm:block text-sm">Termos Inteligentes<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-block ml-1">→</span></a></li>
+            <li class="group"><a href="pages/categoria-bandas.html" class="text-marca-crema/70 hover:text-marca-primario transition-all duration-300 transform group-hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md py-1 block min-h-[48px] sm:min-h-0 sm:py-0 flex items-center sm:block text-sm">Bandas de Resistencia<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-block ml-1">→</span></a></li>
+            <li class="group"><a href="pages/categoria-accesorios.html" class="text-marca-crema/70 hover:text-marca-primario transition-all duration-300 transform group-hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md py-1 block min-h-[48px] sm:min-h-0 sm:py-0 flex items-center sm:block text-sm">Accesorios de Recuperación<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-block ml-1">→</span></a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Soporte y Políticas" class="flex flex-col gap-6">
+          <h3 class="text-marca-crema font-bold tracking-wider uppercase text-sm">Soporte y Políticas</h3>
+          <ul class="flex flex-col gap-3">
+            <li class="group"><a href="pages/soporte-rastreo.html" class="text-marca-crema/70 hover:text-marca-primario transition-all duration-300 transform group-hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md py-1 block min-h-[48px] sm:min-h-0 sm:py-0 flex items-center sm:block text-sm">Rastrea tu Pedido<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-block ml-1">→</span></a></li>
+            <li class="group"><a href="pages/politica-garantia.html" class="text-marca-crema/70 hover:text-marca-primario transition-all duration-300 transform group-hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md py-1 block min-h-[48px] sm:min-h-0 sm:py-0 flex items-center sm:block text-sm">Términos de Garantía<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-block ml-1">→</span></a></li>
+            <li class="group"><a href="pages/politica-devoluciones.html" class="text-marca-crema/70 hover:text-marca-primario transition-all duration-300 transform group-hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md py-1 block min-h-[48px] sm:min-h-0 sm:py-0 flex items-center sm:block text-sm">Políticas de Devolución<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-block ml-1">→</span></a></li>
+            <li class="group"><a href="pages/politica-privacidad.html" class="text-marca-crema/70 hover:text-marca-primario transition-all duration-300 transform group-hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-md py-1 block min-h-[48px] sm:min-h-0 sm:py-0 flex items-center sm:block text-sm">Política de Privacidad<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-block ml-1">→</span></a></li>
+          </ul>
+        </nav>
+
+        <div class="flex flex-col gap-6">
+          <h3 class="text-marca-crema font-bold tracking-wider uppercase text-sm">Síguenos y Noticias</h3>
+          <p class="text-sm leading-relaxed text-marca-crema/70">Suscrbete para recibir ofertas exclusivas y consejos de recuperacióón.</p>
+          <form action="#" method="post" class="flex flex-col gap-3">
+            <label for="newsletter-email" class="sr-only">Correo electrónico</label>
+            <input type="email" id="newsletter-email" name="email" placeholder="Ingresa tu correo" required class="w-full bg-marca-crema/10 border border-marca-crema/20 text-marca-crema rounded-xl px-4 py-3 focus:outline-none focus:border-marca-primario focus:ring-1 focus:ring-marca-primario focus:bg-white/10 transition-colors duration-300 min-h-[48px] placeholder-marca-crema/50 text-sm">
+            <button type="submit" class="w-full bg-marca-primario hover:bg-indigo-500 hover:shadow-[0_0_20px_rgba(46,47,220,0.4)] active:scale-95 text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-marca-negro focus:ring-marca-primario min-h-[48px] text-sm tracking-wide">Suscribirme</button>
+          </form>
+          <div class="flex items-center gap-3 mt-2">
+            <a href="#" aria-label="Instagram" class="text-marca-crema/70 hover:text-white hover:-translate-y-1 hover:scale-110 hover:shadow-[0_0_15px_rgba(46,47,220,0.5)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-full p-2 min-h-[48px] min-w-[48px] flex items-center justify-center bg-marca-crema/10 border border-marca-crema/20 hover:border-marca-crema/40">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" aria-label="Facebook" class="text-marca-crema/70 hover:text-white hover:-translate-y-1 hover:scale-110 hover:shadow-[0_0_15px_rgba(46,47,220,0.5)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-full p-2 min-h-[48px] min-w-[48px] flex items-center justify-center bg-marca-crema/10 border border-marca-crema/20 hover:border-marca-crema/40">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" aria-label="TikTok" class="text-marca-crema/70 hover:text-white hover:-translate-y-1 hover:scale-110 hover:shadow-[0_0_15px_rgba(46,47,220,0.5)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-marca-primario rounded-full p-2 min-h-[48px] min-w-[48px] flex items-center justify-center bg-marca-crema/10 border border-marca-crema/20 hover:border-marca-crema/40">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-marca-crema/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-marca-crema/50 font-medium">
+        <p>&copy; 2026 GL Hazlo Tuyo. Todos los derechos reservados.</p>
+        <div class="flex items-center gap-2">
+          <span>Medios de pago seguros: PSE, Tarjetas de Crédito, Efecty, Contra Entrega</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lógica de Negocio e Interactividad -->
+  <script type="module" src="./js/script.js"></script>
+</body>
+</html>
