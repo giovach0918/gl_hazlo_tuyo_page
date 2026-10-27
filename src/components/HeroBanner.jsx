@@ -3,7 +3,8 @@ import { cn } from '../utils/cn';
 
 /**
  * HeroBanner Component
- * Sección principal de impacto visual con fondo oscurecido, tipografía corporativa y CTA de alta conversión.
+ * Sección principal de impacto visual con degradado corporativo profundo,
+ * tipografía audaz y CTA con resplandor coloreado de alta conversión.
  *
  * @param {Object} props
  * @param {string} [props.badge] Texto de la píldora superior.
@@ -34,7 +35,7 @@ export const HeroBanner = ({
         className
       )}
     >
-      {/* Contenedor de Imagen de Fondo con Overlay Gradiente */}
+      {/* Contenedor de Imagen de Fondo con Overlay Gradiente Corporativo Profundo */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <picture className="w-full h-full absolute inset-0">
           <img
@@ -47,7 +48,7 @@ export const HeroBanner = ({
             className="w-full h-full object-cover opacity-45"
           />
         </picture>
-        <div className="absolute inset-0 bg-gradient-to-b from-marca-negro/70 via-marca-negro/40 to-marca-negro/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-indigo-950/60 to-slate-950/90" />
       </div>
 
       {/* Contenido Central Mobile First */}
@@ -72,9 +73,10 @@ export const HeroBanner = ({
             onClick={onCtaClick}
             className={cn(
               'inline-flex items-center justify-center min-h-[48px] min-w-[48px] px-8 py-4',
-              'bg-marca-primario hover:bg-indigo-600 text-white rounded-xl shadow-lg hover:shadow-2xl',
-              'hover:-translate-y-0.5 transition-all duration-200 font-bold text-base uppercase tracking-wider',
-              'w-full sm:w-auto active:scale-95 focus:outline-none focus:ring-4 focus:ring-marca-primario/50'
+              'bg-marca-primario hover:bg-indigo-600 text-white rounded-xl',
+              'shadow-[0_4px_20px_rgba(46,47,220,0.4)] hover:shadow-[0_6px_25px_rgba(46,47,220,0.6)] hover:scale-105 active:scale-95',
+              'transition-all duration-200 font-bold text-base uppercase tracking-wider',
+              'w-full sm:w-auto focus:outline-none focus:ring-4 focus:ring-marca-primario/50'
             )}
           >
             {ctaText}
@@ -84,3 +86,5 @@ export const HeroBanner = ({
     </section>
   );
 };
+
+export default HeroBanner;

@@ -22,6 +22,12 @@ export const ProductCarousel = ({
 }) => {
   const carouselRef = useRef(null);
 
+  // Filtrar únicamente los productos destacados (isFeatured: true)
+  const featuredProducts = React.useMemo(() => {
+    const featured = products.filter((p) => p.isFeatured);
+    return featured.length > 0 ? featured : products.slice(0, 5);
+  }, [products]);
+
   const scroll = (direction) => {
     if (!carouselRef.current) return;
     const scrollAmount = carouselRef.current.clientWidth * 0.8;
@@ -94,7 +100,7 @@ export const ProductCarousel = ({
           className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth gap-4 sm:gap-6 pb-6 px-1 hide-scrollbar"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {products.map((product) => (
+          {featuredProducts.map((product) => (
             <li
               key={product.id}
               className="flex-none w-[85%] sm:w-[46%] lg:w-[31%] snap-center"

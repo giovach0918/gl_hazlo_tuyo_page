@@ -5,7 +5,7 @@ import { cn } from '../utils/cn';
 
 /**
  * ProductCard Component
- * Tarjeta de producto atómica, accesible y mobile-first para catálogos y carruseles.
+ * Tarjeta de producto atómica, accesible y mobile-first con elevación visual y micro-interacciones.
  *
  * @param {Object} props
  * @param {Object} props.product Datos del producto.
@@ -41,8 +41,9 @@ export const ProductCard = ({
   return (
     <article
       className={cn(
-        'bg-white border border-marca-gris/15 rounded-3xl shadow-sm hover:shadow-xl',
-        'transition-all duration-300 flex flex-col h-full p-5 sm:p-6 gap-4 sm:gap-5 overflow-hidden group',
+        'bg-white border border-marca-gris/15 rounded-3xl shadow-sm',
+        'hover:-translate-y-1.5 hover:shadow-xl hover:border-marca-primario/30 transition-all duration-300',
+        'flex flex-col h-full p-5 sm:p-6 gap-4 sm:gap-5 overflow-hidden group',
         className
       )}
     >
@@ -78,11 +79,11 @@ export const ProductCard = ({
       {/* Precios y Acciones */}
       <div className="flex flex-col gap-4 mt-auto pt-4 border-t border-marca-gris/10">
         <div className="flex items-baseline gap-2.5">
-          <span className="text-marca-primario font-black text-xl sm:text-2xl tracking-tight">
+          <span className="text-2xl font-black text-marca-primario tracking-tight">
             {formatCurrency(price)}
           </span>
           {originalPrice && (
-            <span className="text-xs sm:text-sm text-marca-gris/80 line-through font-medium">
+            <span className="text-sm text-zinc-400 line-through font-medium">
               {formatCurrency(originalPrice)}
             </span>
           )}
@@ -128,3 +129,5 @@ export const ProductCard = ({
     </article>
   );
 };
+
+export default ProductCard;
