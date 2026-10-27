@@ -2,11 +2,11 @@ import React from 'react';
 
 export default function LegalPage({ title = 'Políticas y Soporte', content }) {
   return (
-    <main id="main-content" className="flex-1 container mx-auto px-4 py-12 max-w-4xl">
+    <div className="container mx-auto px-4 py-12 max-w-4xl">
       <h1 className="text-3xl sm:text-4xl font-black text-marca-negro tracking-tight mb-8">
         {title}
       </h1>
-      <div className="prose prose-zinc max-w-none text-marca-gris leading-relaxed space-y-6">
+      <div className="prose prose-zinc max-w-none text-marca-gris leading-relaxed space-y-6 font-medium">
         {content || (
           <>
             <p>
@@ -16,11 +16,12 @@ export default function LegalPage({ title = 'Políticas y Soporte', content }) {
             </p>
             <p>
               Para cualquier consulta o solicitud de cambio, nuestro canal de atención al cliente en
-              WhatsApp está disponible de lunes a sábado.
+              WhatsApp está disponible de lunes a sábado con cobertura a nivel nacional y servicio
+              de Pago Contra Entrega.
             </p>
           </>
         )}
       </div>
-    </main>
+    </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { cn } from '../utils/cn';
 
 /**
@@ -117,8 +118,8 @@ export const CategoryCarousel = ({
                   <p className="text-marca-gris text-xs sm:text-sm flex-1 leading-relaxed">
                     {category.description}
                   </p>
-                  <a
-                    href={category.href}
+                  <Link
+                    to={category.href}
                     className={cn(
                       'inline-flex items-center justify-center min-h-[48px] min-w-[48px] mt-3 px-6 py-3',
                       'bg-marca-primario/10 text-marca-primario hover:bg-marca-primario hover:text-white',
@@ -127,7 +128,7 @@ export const CategoryCarousel = ({
                     )}
                   >
                     {category.ctaText || 'Explorar'}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </li>

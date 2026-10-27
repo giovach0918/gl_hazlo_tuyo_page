@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {
   Navbar,
   Footer,
   CartDrawer,
   WhatsAppButton,
 } from './components';
-import { Home } from './pages';
+import {
+  Home,
+  CategoryPage,
+  ProductDetailPage,
+  LegalPage,
+  AdminProducts,
+} from './pages';
+import { ScrollToTop } from './utils';
 import {
   NAV_LINKS,
   HERO_DATA,
@@ -16,8 +24,8 @@ const LOCAL_STORAGE_KEY = 'gl_hazlo_tuyo_cart_state';
 
 /**
  * App Component
- * Orquestador principal de la aplicación React de GL Hazlo Tuyo.
- * Gestiona el estado reactivo del carrito y distribuye datos por props hacia los componentes atómicos.
+ * Orquestador principal SPA de GL Hazlo Tuyo con React Router v6.
+ * Sincroniza el enrutamiento declarativo, la persistencia del carrito y el desplazamiento superior automático.
  */
 export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -45,7 +53,9 @@ export default function App() {
       const existing = prevItems.find((item) => item.id === product.id);
       if (existing) {
         return prevItems.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + (product.quantity || 1) }
+            : item
         );
       }
       return [
@@ -55,7 +65,7 @@ export default function App() {
           name: product.name,
           variant: product.variant || 'Estándar',
           price: product.price,
-          quantity: 1,
+          quantity: product.quantity || 1,
           image: product.image,
         },
       ];
@@ -84,43 +94,61 @@ export default function App() {
   const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <div className="bg-marca-crema text-marca-negro font-corporativa antialiased selection:bg-marca-primario selection:text-white flex flex-col min-h-screen">
-      {/* 1. Navbar Atómico */}
-      <Navbar
-        announcementText={HERO_DATA.announcementText}
-        links={NAV_LINKS}
-        cartCount={totalCartCount}
-        onOpenCart={() => setIsCartOpen(true)}
-      />
+    <BrowserRouter>
+      {/* Utilidad de auto-scroll al inicio en cada cambio de ruta */}
+      <ScrollToTop />
 
-      {/* 2. Vista Principal (Home) */}
-      <Home onAddToCart={handleAddToCart} />
+      <div className="bg-marca-crema text-marca-negro font-corporativa antialiased selection:bg-marca-primario selection:text-white flex flex-col min-h-screen">
+        {/* 1. Navbar Atómico */}
+        <Navbar
+          announcementText={HERO_DATA.announcementText}
+          links={NAV_LINKS}
+          cartCount={totalCartCount}
+          onOpenCart={() => setIsCartOpen(true)}
+        />
 
-      {/* 3. Footer Atómico */}
-      <Footer
-        aboutText={FOOTER_DATA.aboutText}
-        categories={FOOTER_DATA.categories}
-        support={FOOTER_DATA.support}
-        socialLinks={FOOTER_DATA.socialLinks}
-        copyrightText={FOOTER_DATA.copyrightText}
-        paymentMethodsText={FOOTER_DATA.paymentMethodsText}
-        onNewsletterSubmit={(email) => {
-          console.log('Newsletter subscripción:', email);
-        }}
-      />
+        {/* 2. Contenido Principal con Rutas de la SPA */}
+        <main id="main-content" className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
+            <Route path="/categoria/:categorySlug" element={<CategoryPage onAddToCart={handleAddToCart} />} />
+            <Route path="/categoria-:categorySlug" element={<CategoryPage onAddToCart={handleAddToCart} />} />
+            <Route path="/producto/:productSlug" element={<ProductDetailPage onAddToCart={handleAddToCart} />} />
+            <Route path="/producto-:productSlug" element={<ProductDetailPage onAddToCart={handleAddToCart} />} />
+            <Route path="/soporte-rastreo" element={<LegalPage title="Rastrea tu Pedido" />} />
+            <Route path="/politica-garantia" element={<LegalPage title="Términos de Garantía" />} />
+            <Route path="/politica-devoluciones" element={<LegalPage title="Políticas de Devolución" />} />
+            <Route path="/politica-privacidad" element={<LegalPage title="Política de Privacidad" />} />
+            <Route path="/admin" element={<AdminProducts />} />
+          </Routes>
+        </main>
 
-      {/* 4. Drawer de Carrito Interactivo */}
-      <CartDrawer
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        items={cartItems}
-        onUpdateQuantity={handleUpdateQuantity}
-        onRemoveItem={handleRemoveItem}
-        onCheckout={handleCheckout}
-      />
+        {/* 3. Footer Atómico */}
+        <Footer
+          aboutText={FOOTER_DATA.aboutText}
+          categories={FOOTER_DATA.categories}
+          support={FOOTER_DATA.support}
+          socialLinks={FOOTER_DATA.socialLinks}
+          copyrightText={FOOTER_DATA.copyrightText}
+          paymentMethodsText={FOOTER_DATA.paymentMethodsText}
+          onNewsletterSubmit={(email) => {
+            console.log('Newsletter subscripción:', email);
+          }}
+        />
 
-      {/* 5. Botón Flotante WhatsApp */}
-      <WhatsAppButton />
-    </div>
+        {/* 4. Drawer de Carrito Interactivo */}
+        <CartDrawer
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          items={cartItems}
+          onUpdateQuantity={handleUpdateQuantity}
+          onRemoveItem={handleRemoveItem}
+          onCheckout={handleCheckout}
+        />
+
+        {/* 5. Botón Flotante WhatsApp */}
+        <WhatsAppButton />
+      </div>
+    </BrowserRouter>
   );
 }

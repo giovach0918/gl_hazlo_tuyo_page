@@ -15,7 +15,7 @@ import {
 
 export default function Home({ onAddToCart }) {
   return (
-    <main id="main-content" className="flex-1">
+    <>
       {/* Banner Hero Principal */}
       <HeroBanner
         badge={HERO_DATA.badge}
@@ -50,6 +50,6 @@ export default function Home({ onAddToCart }) {
         subtitle="Únete a miles de colombianos que ya mejoraron su bienestar."
         testimonials={TESTIMONIALS_DATA}
       />
-    </main>
+    </>
   );
 }

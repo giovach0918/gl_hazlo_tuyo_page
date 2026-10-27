@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { formatCurrency } from '../utils/formatCurrency';
 import { cn } from '../utils/cn';
 
@@ -88,12 +89,12 @@ export const ProductCard = ({
         </div>
 
         <div className="flex flex-col gap-2 sm:gap-3">
-          <a
-            href={detailsUrl}
+          <Link
+            to={detailsUrl}
             className="inline-flex items-center justify-center min-h-[48px] min-w-[48px] text-sm font-bold text-marca-negro hover:text-marca-primario underline decoration-marca-gris/30 underline-offset-4 hover:decoration-marca-primario transition-colors rounded-xl focus:outline-none focus:ring-2 focus:ring-marca-primario"
           >
             Ver detalles
-          </a>
+          </Link>
           <button
             type="button"
             onClick={() => onAddToCart(product)}

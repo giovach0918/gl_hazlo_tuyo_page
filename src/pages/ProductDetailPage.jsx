@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { PRODUCTS_DATA } from '../data/mockData';
 
-export default function ProductDetailPage({ productSlug = 'producto-ay1688', onAddToCart }) {
-  const product = PRODUCTS_DATA.find((p) => p.slug === productSlug || p.id === productSlug) || PRODUCTS_DATA[0];
-  const [selectedVariant, setSelectedVariant] = useState(product.variants?.[0] || 'Estándar');
+export default function ProductDetailPage({ productSlug: propProductSlug, onAddToCart }) {
+  const { productSlug: paramProductSlug } = useParams();
+  const slug = propProductSlug || paramProductSlug;
+
+  const product =
+    PRODUCTS_DATA.find(
+      (p) =>
+        p.slug === slug ||
+        p.id === slug ||
+        p.detailsUrl === `/producto/${slug}` ||
+        p.detailsUrl === `/producto-${slug}` ||
+        (slug && p.id?.includes(slug)) ||
+        (slug && p.detailsUrl?.includes(slug))
+    ) || PRODUCTS_DATA[0];
+
+  const [selectedVariant, setSelectedVariant] = useState(
+    product.variants?.[0] || product.variant || 'Estándar'
+  );
   const [quantity, setQuantity] = useState(1);
 
   const handleAdd = () => {
@@ -17,7 +33,7 @@ export default function ProductDetailPage({ productSlug = 'producto-ay1688', onA
   };
 
   return (
-    <main id="main-content" className="flex-1 container mx-auto px-4 py-8 lg:py-16">
+    <div className="container mx-auto px-4 py-8 lg:py-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
         {/* Imagen Principal */}
         <div className="aspect-square bg-zinc-100 rounded-3xl overflow-hidden border border-zinc-200 shadow-sm relative group">
@@ -34,7 +50,10 @@ export default function ProductDetailPage({ productSlug = 'producto-ay1688', onA
         {/* Información y Compra */}
         <div className="flex flex-col gap-6">
           <div className="border-b border-zinc-200 pb-6">
-            <h1 className="text-3xl sm:text-4xl font-black text-marca-negro tracking-tight">
+            <span className="text-xs font-bold text-marca-primario uppercase tracking-wider bg-marca-primario/10 px-3 py-1 rounded-md w-fit">
+              {product.category}
+            </span>
+            <h1 className="text-3xl sm:text-4xl font-black text-marca-negro tracking-tight mt-3">
               {product.name}
             </h1>
             <div className="mt-4 flex items-center gap-3">
@@ -59,7 +78,7 @@ export default function ProductDetailPage({ productSlug = 'producto-ay1688', onA
               <span className="text-sm font-bold uppercase tracking-wide text-marca-negro">
                 Variante / Color:
               </span>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 {product.variants.map((v) => (
                   <button
                     key={v}
@@ -78,8 +97,30 @@ export default function ProductDetailPage({ productSlug = 'producto-ay1688', onA
             </div>
           )}
 
-          {/* Botón de compra */}
-          <div className="flex gap-4 pt-4">
+          {/* Selector de Cantidad y Botón de compra */}
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex items-center border border-zinc-200 rounded-xl overflow-hidden bg-white w-fit">
+              <button
+                type="button"
+                onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                className="px-4 py-3 text-marca-gris hover:bg-zinc-50 font-bold"
+                aria-label="Disminuir cantidad"
+              >
+                -
+              </button>
+              <span className="px-4 py-3 font-bold text-marca-negro text-sm">
+                {quantity}
+              </span>
+              <button
+                type="button"
+                onClick={() => setQuantity((q) => q + 1)}
+                className="px-4 py-3 text-marca-gris hover:bg-zinc-50 font-bold"
+                aria-label="Aumentar cantidad"
+              >
+                +
+              </button>
+            </div>
+
             <button
               type="button"
               onClick={handleAdd}
@@ -90,6 +131,6 @@ export default function ProductDetailPage({ productSlug = 'producto-ay1688', onA
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

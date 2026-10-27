@@ -22,7 +22,7 @@ export const HeroBanner = ({
   ctaText = 'Ver Catálogo',
   ctaHref = '#catalogo',
   onCtaClick,
-  bgImage = './assets/Hero.jpg',
+  bgImage = '/assets/Hero.jpg',
   className = '',
 }) => {
   return (
